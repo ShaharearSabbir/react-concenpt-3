@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 const ControlledField = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("secret");
   const [error, setError] = useState("");
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    console.log("Submitted");
-    if (password.length < 6) {
-      setError("6 or More");
-    } else {
-      setError("");
-    }
+    console.log(email, password);
+  };
+
+  const handleEmailOnChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordOnChange = (e) => {
@@ -27,9 +27,11 @@ const ControlledField = () => {
     <div>
       <form onSubmit={handleSumbit}>
         <input
+          onChange={handleEmailOnChange}
           type="email"
           name="email"
           id="email"
+          defaultValue={email}
           placeholder="Email"
           required
         />
